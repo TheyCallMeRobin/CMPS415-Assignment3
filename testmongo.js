@@ -26,24 +26,24 @@ app.get('/say/:name', function(req, res) {
 
 
 // Route to access database:
-app.get('/api/mongo/:employees', function(req, res) {
+app.get('/api/mongo/:title', function(req, res) {
 const client = new MongoClient(uri);
-const searchKey = "{ employeeID: '" + req.params.employees + "' }";
+const searchKey = "{ employeeID: '" + req.params.title + "' }";
 console.log("Looking for: " + searchKey);
 
 async function run() {
   try {
     const database = client.db('rwmdb');
-    const employees = database.collection('cmps415');
+    const parts = database.collection('cmps415');
 
     // Hardwired Query for a part that has partID '12345'
     // const query = { partID: '12345' };
     // But we will use the parameter provided with the route
-    const query = { employeeID: req.params.employees };
+    const query = { employeeID: req.params.title };
 
-    const part = await employeeID.findOne(query);
-    console.log(employeeID);
-    res.send('Found this: ' + JSON.stringify(employeeID));  //Use stringify to print a json
+    const part = await employees.findOne(query);
+    console.log(employee);
+    res.send('Found this: ' + JSON.stringify(employee));  //Use stringify to print a json
 
   } finally {
     // Ensures that the client will close when you finish/error
