@@ -28,7 +28,7 @@ app.get('/say/:name', function(req, res) {
 // Route to access database:
 app.get('/api/mongo/:title', function(req, res) {
 const client = new MongoClient(uri);
-const searchKey = "{ employeeID: '" + req.params.title + "' }";
+const searchKey = "{ title: '" + req.params.title + "' }";
 console.log("Looking for: " + searchKey);
 
 async function run() {
@@ -39,11 +39,11 @@ async function run() {
     // Hardwired Query for a part that has partID '12345'
     // const query = { partID: '12345' };
     // But we will use the parameter provided with the route
-    const query = { employeeID: req.params.title };
+    const query = { title: req.params.title };
 
-    const part = await employees.findOne(query);
-    console.log(employee);
-    res.send('Found this: ' + JSON.stringify(employee));  //Use stringify to print a json
+    const part = await title.findOne(query);
+    console.log(title);
+    res.send('Found this: ' + JSON.stringify(title));  //Use stringify to print a json
 
   } finally {
     // Ensures that the client will close when you finish/error
